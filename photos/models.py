@@ -43,17 +43,33 @@ class Location(models.Model):
     def edit_location(cls, id, value):
         cls.objects.filter(id=id).update(image=value)
 
+class Category(models.Model):
+    '''
+    Class to categorize the images
+    '''
+    name = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.name
+
+    def save_category(self):
+        self.save()
+
+    def delete_category(self):
+        self.delete()
+
+
 class Image(models.Model):
     '''
     Class to upload an image
     '''
     name = models.CharField(max_length=30)
     description = models.TextField()
-    category = models.ForeignKey()
+    category = models.ForeignKey(Category, on_delete=models.CASCADE)
     photo = models.ImageField(upload_to = ('image/'), default="")
-    image_link = models.CharField()
+    image_link = models.CharField(max_length=2048)
     date_uploaded = models.DateTimeField(auto_now_add=True)
-    photographer = models.ForeignKey('Photographer', on_delete= models.CASCADE)
+    photographer = models.ForeignKey(Photographer, on_delete= models.CASCADE)
     location = models.ManyToManyField(Location)
 
     def save_image(self):
@@ -76,18 +92,7 @@ class Image(models.Model):
     def update_photo(cls, id, value):
         cls.objects.filter(id=id).update(image=value)
     
-class Category(models.Model):
-    '''
-    Class to categorize the images
-    '''
-    name = models.CharField(max_length=50)
-
-    def __str__(self):
-        return self.name
-
-    def save_category(self):
-        self.save()
-
-    def delete_category(self):
-        self.delete()
+    class Meta:
+        ordering = ['date_uploaded']
+    
 
