@@ -70,7 +70,7 @@ class Image(models.Model):
     image_link = models.CharField(max_length=2048)
     date_uploaded = models.DateTimeField(auto_now_add=True)
     photographer = models.ForeignKey(Photographer, on_delete= models.CASCADE)
-    location = models.ManyToManyField(Location)
+    location = models.ForeignKey(Location, on_delete=models.CASCADE, default="")
 
     def save_image(self):
         self.save()
