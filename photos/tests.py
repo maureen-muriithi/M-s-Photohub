@@ -54,5 +54,24 @@ class Test_Location(TestCase):
         self.location.delete_location()
         location = Location.objects.all()
         self.assertTrue(len(location) == 0)
+
+class Test_Category(TestCase):
+    '''
+    Test class for the photos' category model
+    '''
+    def setUp(self):
+        self.category = Category(name = 'Food-category')
+    
+    def test_instance(self):
+        self.assertTrue(isinstance(self.category, Category))
+    
+    def test_save_category(self):
+        self.category.save_category()
+        categories = Category.objects.all()
+        self.assertTrue(len(categories) > 0)
+
+    
+
+
     
     
