@@ -56,10 +56,10 @@ class Image(models.Model):
     photographer = models.ForeignKey('Photographer', on_delete= models.CASCADE)
     location = models.ManyToManyField(Location)
 
-    def save_photo(self):
+    def save_image(self):
         self.save()
     
-    def delete_photo(self):
+    def delete_image(self):
         self.delete()
 
     @classmethod
