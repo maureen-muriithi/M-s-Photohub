@@ -22,3 +22,37 @@ class Test_Photographer(TestCase):
     #     photographers = Photographer.objects.all()
     #     self.assertTrue(len(photographers) > 0)
 
+class Test_Location(TestCase):
+    '''
+    Test class for the photos' location model
+    '''
+    def setUp(self):
+        self.location = Location(name = 'Narobi')
+
+    
+    def test_instance(self):
+        self.assertTrue(isinstance(self.location, Location))
+
+    def test_save_location(self):
+        self.location.save_location()
+        locations = Location.get_location()
+        self.assertTrue(len(locations) > 0)
+
+    def test_get_location(self):
+        self.location.save_location()
+        locations = Location.get_location()
+        self.assertTrue(len(locations) > 1)
+
+    def test_edit_location(self):
+        new_location = 'Mombasa'
+        self.location.save_location()
+        self.location.edit_location(self.location.id, new_location)
+        editted_location = Location.objects.filter(name='Mombasa')
+        self.assertTrue(len(editted_location) > 0)
+
+    def test_delete_location(self):
+        self.location.delete_location()
+        location = Location.objects.all()
+        self.assertTrue(len(location) == 0)
+    
+    
