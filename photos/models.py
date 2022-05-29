@@ -91,6 +91,15 @@ class Image(models.Model):
     @classmethod
     def update_photo(cls, id, value):
         cls.objects.filter(id=id).update(image=value)
+
+    @classmethod
+    def get_images(cls, id):
+        images = cls.objects.filter(id=id).all()
+        return images
+    
+    def __str__(self):
+        return(self.name)
+
     
     class Meta:
         ordering = ['date_uploaded']

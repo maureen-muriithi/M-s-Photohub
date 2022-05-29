@@ -1,4 +1,6 @@
 from django.shortcuts import render
+from .models import Image
+import datetime as dt
 
 
 # Create your views here.
@@ -8,5 +10,18 @@ def home(request):
     return render(request, 'index.html', {"heading": heading, "title":title})
 
 def search_photos(request):
-    photo = 'My Photos'
-    return render(request, 'search.html', {"photo": photo})
+    if 'image' in request.GET and request.GET["image"]:
+        search_term = request.GET.get("image")
+        searched_photos = Image.search_by_category(search_term)
+        message = f"{search_term}"
+
+        return render(request, 'search.html',{"message":message,"images": searched_photos})
+
+    else:
+        message = "You haven't searched for any term"
+        return render(request, 'search.html',{"message":message})
+
+def display_photos(request):
+    date = dt.date.today()
+    images = Image.get_images(id=1)
+    return render(request, 'display_images.html', {"date": date,"images":images})
