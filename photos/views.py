@@ -11,8 +11,6 @@ def home(request):
     title = "M's Photohub"
     return render(request, 'index.html', {"heading": heading, "title":title})
 
-
-
 def display_photos(request):
     date = dt.date.today()
     images = Image.objects.all()
@@ -37,9 +35,3 @@ def search_results(request):
     else:
         message = "You haven't searched for any image category"
         return render(request, 'search.html', {"message": message})
-
-# def image_location(request,location_name):
-#     location=Location.get_location()
-#     images= Image.filter_by_location(location_name)
-#     message = f"{location_name}"
-#     return render(request, 'img_location.html',{"message":message,"images": images,"location":location})
