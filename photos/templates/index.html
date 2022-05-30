@@ -2,9 +2,9 @@
 
 {% block content %}
     {{ block.super }}
-    <div class="hero-image" style="hyphens: 650px;">
+    <div class="hero-image" style="height: 650px;">
       <div class="hero-text">
-        <h1 class="text-center" >{{ heading }} <span style="color: chocolate;"> M's</span> Photohub </h1>
+        <h1 class="text-center" style="color: white;" >{{ heading }} <span style="color: black;"> M's</span> Photohub </h1>
         <p class="text-center" id="index_intro" >Let's explore through this amazing gallery!!</p>
         <a href="{% url 'display_photos'%}">
           <li class="btn border shadow" style="font-size: 2.9rem; font-weight:800 ;" id="indexBtn">EXPLORE</li>
