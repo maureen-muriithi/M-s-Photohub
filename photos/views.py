@@ -27,3 +27,8 @@ def display_photos(request):
     categories = Category.objects.all()
     locations = Location.get_location()
     return render(request, 'display_images.html', {"date": date,"images":images, "locations":locations, "categories": categories})
+
+def image_location(request, location):
+    images = Image.filter_by_location(location)
+    print(images)
+    return render(request, 'location.html', {'location_images': images})
