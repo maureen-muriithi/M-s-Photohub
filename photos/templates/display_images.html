@@ -105,9 +105,18 @@
 
 	
 					<div class="modal-footer" style="background-color:chocolate ; color: bisque;">
-						<input class="form-control input-lg" type="text"
+						<input class="form-control input-lg responsive" type="text"
 								value="{{img.photo.url}}" id="{{img.id}}.url">
-						<button class="btn btn-success btn-sm" onclick="copyLink('{{img.id}}.url')">Copy</button>
+						<button class="btn btn-success btn-sm" type="button" onclick="copyLink('{{img.id}}.url');">Copy</button>
+						<script>
+                            function copyLink() {
+                                var urlLink = document.getElementById("{{img.id}}.url");
+                                urlLink.select();
+                                urlLink.setSelectionRange(0, 99999)
+                                navigator.clipboard.writeText(urlLink.value)
+                                alert('url copied succefully: ' + urlLink.value);
+                            }
+                        </script>
 					</div>
 					<div class="modal-footer" style="background-color:chocolate ; color: bisque;">
 						<button
