@@ -1,11 +1,11 @@
 {% extends 'base.html' %}
 {% block content %}
-<div class="container-fluid">
+<div class="container-fluid" style="background-color:chocolate; padding-bottom: 300px;">
 
     {% if images %}
-    <h2 class="text-center" id="found">Found {{ images|length }} images in '{{message}}' category</h2>
+    <h2 class="text-center" id="found">Found {{ images|length }} images in '{{message}}' Category</h2>
     {% else %}
-    <h2 class="text-center" id="foundnon"> Found 0 images for your search {{message}}</h2>
+    <h2 class="text-center" id="foundnon"> Found 0 images for your search '{{message}}'</h2>
 
     <a class="d-block mx-auto" href="/images">
         <button class="btn btn-sm btn-info d-block mx-auto">Check out available photos</button>
@@ -61,11 +61,7 @@
       {%endfor%}
       </div>
       {% endif %}
-    </div>
-    
-    <footer class="footer" style="background-color: black; color: bisque; height: 30px; font-size: medium;" >
-      <p class="text-center" style="padding: 5px;"> <em>© Maureen Muriithi 2022. All Rights Reserved</em></p>
-    </footer>
-      
-    
+
+    </div> 
+         
     {% endblock %}

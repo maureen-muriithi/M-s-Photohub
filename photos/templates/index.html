@@ -2,17 +2,17 @@
 
 {% block content %}
     {{ block.super }}
-    <div class="hero-image">
+    <div class="hero-image" style="hyphens: 650px;">
       <div class="hero-text">
         <h1 class="text-center" >{{ heading }} <span style="color: chocolate;"> M's</span> Photohub </h1>
         <p class="text-center" id="index_intro" >Let's explore through this amazing gallery!!</p>
         <a href="{% url 'display_photos'%}">
           <li class="btn border shadow" style="font-size: 2.9rem; font-weight:800 ;" id="indexBtn">EXPLORE</li>
         </a>
-        <!-- <button id="indexBtn">EXPLORE</button> -->
+
       </div>
     </div>
-    <footer class="footer" style="background-color: black; color: bisque; height: 60px; font-size: 1.8rem;" >
+    <footer class="footer" style="background-color: black; color: bisque; height: 35px; font-size: 1.4rem;" >
       <p class="text-center" style="padding: 5px;"> <em>© Maureen Muriithi 2022. All Rights Reserved</em></p>
     </footer>
 
