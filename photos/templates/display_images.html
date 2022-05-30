@@ -1,232 +1,265 @@
 {%extends 'base.html'%}
-{%load bootstrap3%}
+
 {% block content %} 
 {{ block.super}}
 
-<main class="my-3">
-	<br>
-	<div class="container my-3">
-		<div class="text-center">
-			<div class="card text-center" style="background-color:bisque;" >
-				<br>
-				<div class="card-header text-center mx-auto" style="font-weight: 900; font-size: larger; background-color: chocolate; padding: 10px;"> Categories </div>
-				<ul
-					class="list-group list-group-flush d-flex flex-row flex-wrap justify-content-center m-2 text-center px-2"
-				>
-					<a href="{% url 'display_photos'%}">
-						<li
-							class="list-group-item btn btn-outline-info border m-2 shadow rounded-3"
-							style="width: 8em; background-color: chocolate; font-weight: 900; color: bisque; "
-							>All
-						</li>
-					</a>
-
-					{% for category in categories %}
-					<a href="{% url 'display_photos'%}?category={{category.name}}">
-						<li
-							class="list-group-item btn btn-outline-info border m-2 shadow rounded-3"
-							style="width: 9em; background-color: chocolate; color: bisque; font-weight: 900;" 
-							>{{category.name}}
-						</li>
-					</a>
-
-					{% endfor %}
-				</ul>
-			</div>
-		</div>
-		<br><br>
-		<div class="text-center">
-			<div class="card text-center" style="background-color: bisque;">
-				<br>
-				<div class="card-header text-center mx-auto" style="font-weight: 900; font-size: larger; background-color: chocolate; padding: 10px;"> Locations </div>
-				<ul
-					class="list-group list-group-flush d-flex flex-row flex-wrap justify-content-center"
-				>
-					<a href="">
-						<li
-							class="list-group-item btn btn-outline border m-2 shadow rounded-3"
-							style="width: 8em; background-color: chocolate; font-weight: 900; color: bisque; "
-							>All
-						</li>
-					</a>
-					{% for location in locations %}
-					<a href="{% url 'display_photos'%}?location={{location.name}}">
-						<li
-							class="list-group-item btn btn-outline border shadow rounded-3 m-2"
-							style="width: 8em; background-color: chocolate; font-weight: 900; color: bisque;"
-							>{{location.name}}</li>
-					</a>
-
-					{% endfor %}
-				</ul>
-			</div>
-		</div>
-	</div>
-
-	<!-- <div class="container-fluid">
-		<div class="container-fluid album py-3 bg-light">
-			<div class="container-fluid">
-				<div
-					class="container-fluid d-flex flex-wrap flex-sm-wrap justify-content-around mx-auto"
-					data-masonry='{ "itemSelector": ".picture", columnWidth: 6, fitWidth: true}'
-				>
-					{%for image in images %}
-					<span class="picture m-2 w-25 shadow-lg p-3 mb-5 bg-body">
-						<div class="mx-auto my-auto text-center py-2">
-                            <button class="btn btn-outline-primary btn-block mx-auto"
-								>{{ image.name }}</button
-							>
-							<button class="btn btn-outline-primary btn-block mx-auto"
-								>Category: {{ image.category.name }}</button
-							>
-							<button class="btn btn-outline-success btn-block mx-auto"
-								> Location: {{ image.location }}</button
-							>
-						</div>
-						
-						<a href="{{image.id}}" data-toggle="modal" data-target="{{image.id}}">
-							<img src="{{image.photo.url}}" class="img-responsive" alt="{{img.name}}" style="width:100%;width:100%">
-
-						</a>
-						<div class="modal fade" id="showPictureModal{{image.id}}" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">>
-
-							<div class="modal-dialog modal-xl col-10">
-								<div class="modal-content">
-									<div class="modal-header">
-										<span class="container mx-auto text-center py-2">
-											<button class="btn btn-outline-primary btn-block mx-auto"
-												>{{ image.category.name }}</button
-											>
-											<button class="btn btn-outline-success btn-block mx-auto"
-												>{{ image.location }}</button
-											>
-										</span>
-										<button
-											type="button"
-											class="btn-close"
-											data-bs-dismiss="modal"
-											aria-label="Close"
-										></button>
-									</div>
-									<div class="modal-body">
-										<h5
-											class="modal-title text-center text-decoration-underline fw-bold h6"
-											id="staticBackdropLabel"
-											>{{ image.description}}
-                                        </h5>
-                                        <h5
-											class="modal-title text-center text-decoration-underline fw-bold h6"
-											id="staticBackdropLabel"
-											> Uploaded by:{{ image.photographer}} at {{ image.date_uploaded}}
-                                        </h5>
-                                        
-										<img
-											class="m-2 rounded-3 col-12 img-fluid px-sm-2 mx-auto"
-											src="{{image.photo.url}}"
-											alt="{{image.image.description}}"
-											width="auto"
-											height="auto"
-										/>
-									</div>
-									<div class="modal-footer">
-										<input id="{{image.id}}.url"  class="form-control input-md responsive" type="text" value="{{image.photo.url}}">
-                                        <button type="button" onclick="copyToClipboard();">Copy</button>
-                                        <script>
-                                            function copyToClipboard() {
-                                                var copyText = document.getElementById("{{image.id}}.url");
-                                                copyText.select();
-                                                copyText.setSelectionRange(0, 99999)
-                                                navigator.clipboard.writeText(copyText.value)
-                                                alert('url copied:' + copyText.value);
-                                            }
-                                        </script>
-
-										<button
-											type="button"
-											class="btn btn-warning"
-											data-bs-dismiss="modal"
-											>Close</button
-										>
-									</div>
-								</div>
-							</div>
-						</div>
-					</span>
-
-					{% endfor %}
-				</div>
-			</div>
-		</div>
-	</div> -->
-
-
-	<div class="container-fluid" id="home">
-		<div>
-			<div id="overlay" class="row">
-		
-				<div class="intro text-center" >
-					<h1 id="welcome_text"> <strong>M'S GALLERY </strong></h1>	
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<div class="container-fluid" id="content">
-		<div class="container-fluid d-flex flex-wrap flex-sm-wrap justify-content-around mx-auto"
-			data-masonry='{ "itemSelector": ".picture", columnWidth: 6, fitWidth: true}'>
-			{% for img in images%}
-			<div class = "col-md-4" data-toggle ="modal" data-target="#showPictureModal{{img.id}}">
-				<a href="{{img.id}}" data-toggle="modal" data-target="{{img.id}}">
-					<img src="{{img.photo.url}}" class="img-responsive" alt="{{img.name}}" style="width: 400px; height:400px">
-					<h5 class="text-center">{{img.name}}</h5>
+<div class="container">
+	<div class="text-center">
+		<div class="card text-center" style="background-color:bisque;" >
+			<br>
+			<div class="card-header text-center mx-auto" style="font-weight: 900; font-size: larger; background-color: chocolate; padding: 10px;"> Categories </div>
+			<ul
+				class="list-group list-group-flush d-flex flex-row flex-wrap justify-content-center m-2 text-center px-2"
+			>
+				<a href="{% url 'display_photos'%}">
+					<li
+						class="list-group-item btn btn-outline-info border m-2 shadow rounded-3"
+						style="width: 8em; background-color: chocolate; font-weight: 900; color: bisque; "
+						>All
+					</li>
 				</a>
-				<div class="modal fade" id="showPictureModal{{img.id}}" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">>
-					<div class="modal-dialog modal-dialog-centered" role="document">
-						<div class="modal-content">
-							<div class="modal-header">
-								<h4 class="modal-title" id="modalPictureTitle">{{img.name}}</h4>
-								<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">&times;</button>
-								
-							</div>
-							<div class="modal-body">
-								<img src="{{img.photo.url}}" class="img-responsive" alt="Image"
-									style="width:100%;max-width:100%">
-								<p class="text-justify">{{img.description}}</p>
-								<p class="text-left"><b>Location:</b> {{img.location}}</p>
-								<p class="text-left"><b>Category:</b> {{img.category}}</p>
-								<p class="text-left"><b>Uploaded by:</b> {{img.photographer}} at {{ img.date_uploaded }}</p>						
-						</div>
 
-			
-						<div class="modal-footer">
-							<input class="form-control input-lg" type="text"
-									value="{{img.photo.url}}" id="{{img.id}}.url">
-							<button class="btn btn-success btn-sm" onclick="copyLink('{{img.id}}.url')">Copy</button>
-						</div>
+				{% for category in categories %}
+				<a href="{% url 'display_photos'%}?category={{category.name}}">
+					<li
+						class="list-group-item btn btn-outline-info border m-2 shadow rounded-3"
+						style="width: 9em; background-color: chocolate; color: bisque; font-weight: 900;" 
+						>{{category.name}}
+					</li>
+				</a>
 
-						<button
-							type="button"
-							class="btn btn-danger"
-							data-bs-dismiss="modal"
-							>Close</button
-						>
-
-					</div>
-						
-					</div>
-
-				</div>
-			</div>
-
-		</div>
-		{%endfor%}
+				{% endfor %}
+			</ul>
 		</div>
 	</div>
+	<br><br>
+	<div class="text-center">
+		<div class="card text-center" style="background-color: bisque;">
+			<br>
+			<div class="card-header text-center mx-auto" style="font-weight: 900; font-size: larger; background-color: chocolate; padding: 10px;"> Locations </div>
+			<ul
+				class="list-group list-group-flush d-flex flex-row flex-wrap justify-content-center"
+			>
+				<a href="">
+					<li
+						class="list-group-item btn btn-outline border m-2 shadow rounded-3"
+						style="width: 8em; background-color: chocolate; font-weight: 900; color: bisque; "
+						>All
+					</li>
+				</a>
+				{% for location in locations %}
+				<a href="{% url 'display_photos'%}?location={{location.name}}">
+					<li
+						class="list-group-item btn btn-outline border shadow rounded-3 m-2"
+						style="width: 8em; background-color: chocolate; font-weight: 900; color: bisque;"
+						>{{location.name}}</li>
+				</a>
 
-    <footer class="footer" style="background-color: rgb(240, 151, 87); color: bisque; height: 30px; font-size: medium;" >
-		<p class="text-center" style="padding: 5px;"> <em>© Maureen Muriithi 2022. All Rights Reserved</em></p>
-	</footer>
+				{% endfor %}
+			</ul>
+		</div>
+	</div>
+</div>
 
-</main>
+<div class="container-fluid" id="home" style="width: 100%;">
+	<div>
+		<div id="overlay" class="row">
+	
+			<div class="intro text-center" >
+				<h1 class="text-center" id="welcome_text"> <strong>M'S GALLERY </strong></h1>	
+			</div>
+		</div>
+	</div>
+</div>
 
-{% endblock content %}
+<div class="container-fluid" id="content" >
+	<div class="row p-4">
+		{% for img in images%}
+	<div class = "col-md-4" data-toggle ="modal" data-target="#showPictureModal{{img.id}}">
+		<a href="{{img.id}}" data-toggle="modal" data-target="{{img.id}}">
+			<img src="{{img.photo.url}}" class="img-responsive" alt="{{img.name}}" style="width: 100%;width: 100%; height:400px">
+			<h5 class="text-center">{{img.name}}</h5>
+		</a>
+		<div class="modal fade" id="showPictureModal{{img.id}}" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">>
+			<div class="modal-dialog modal-dialog-centered" role="document">
+				<div class="modal-content">
+					<div class="modal-header" style="background-color:chocolate ; color: bisque;" >
+						<h4 class="modal-title" id="modalPictureTitle">{{img.name}}</h4>
+						<button type="button" class="btn-close justify-content-end" data-bs-dismiss="modal" aria-label="Close" style="color: black;">&times;</button>
+						
+					</div>
+					<div class="modal-body" style="background-color:chocolate ; color: bisque;" >
+
+						<img src="{{img.photo.url}}" class="img-responsive" alt="Image"
+							style="width:100%;max-width:100%">
+						<br>
+						<p class="text-left"><b>Description:</b></p>
+						<p class="text-justify" style="font-size: medium;">{{img.description}}</p>
+						<p class="text-left"><b>Location:</b> {{img.location}}</p>
+						<p class="text-left"><b>Category:</b> {{img.category}}</p>
+						<p class="text-left"><b>Uploaded by:</b> {{img.photographer}}, <b>updated on</b> {{ img.date_uploaded | date}}</p>						
+					</div>
+
+	
+					<div class="modal-footer" style="background-color:chocolate ; color: bisque;">
+						<input class="form-control input-lg" type="text"
+								value="{{img.photo.url}}" id="{{img.id}}.url">
+						<button class="btn btn-success btn-sm" onclick="copyLink('{{img.id}}.url')">Copy</button>
+					</div>
+					<div class="modal-footer" style="background-color:chocolate ; color: bisque;">
+						<button
+						type="button"
+						class="btn btn-danger"
+						data-bs-dismiss="modal"
+						>Close</button>
+					</div>
+				</div>	
+			</div>
+		</div>
+	</div>
+	{%endfor%}
+	</div>
+</div>
+
+<footer class="footer" style="background-color: rgb(240, 151, 87); color: bisque; height: 30px; font-size: medium;" >
+	<p class="text-center" style="padding: 5px;"> <em>© Maureen Muriithi 2022. All Rights Reserved</em></p>
+</footer>
+	
+
+{% endblock %}
+
+<!-- <div class="container">
+	<div class="text-center">
+		<div class="card text-center" style="background-color:bisque;" >
+			<br>
+			<div class="card-header text-center mx-auto" style="font-weight: 900; font-size: larger; background-color: chocolate; padding: 10px;"> Categories </div>
+			<ul
+				class="list-group list-group-flush d-flex flex-row flex-wrap justify-content-center m-2 text-center px-2"
+			>
+				<a href="{% url 'display_photos'%}">
+					<li
+						class="list-group-item btn btn-outline-info border m-2 shadow rounded-3"
+						style="width: 8em; background-color: chocolate; font-weight: 900; color: bisque; "
+						>All
+					</li>
+				</a>
+
+				{% for category in categories %}
+				<a href="{% url 'display_photos'%}?category={{category.name}}">
+					<li
+						class="list-group-item btn btn-outline-info border m-2 shadow rounded-3"
+						style="width: 9em; background-color: chocolate; color: bisque; font-weight: 900;" 
+						>{{category.name}}
+					</li>
+				</a>
+
+				{% endfor %}
+			</ul>
+		</div>
+	</div>
+	<br><br>
+	<div class="text-center">
+		<div class="card text-center" style="background-color: bisque;">
+			<br>
+			<div class="card-header text-center mx-auto" style="font-weight: 900; font-size: larger; background-color: chocolate; padding: 10px;"> Locations </div>
+			<ul
+				class="list-group list-group-flush d-flex flex-row flex-wrap justify-content-center"
+			>
+				<a href="">
+					<li
+						class="list-group-item btn btn-outline border m-2 shadow rounded-3"
+						style="width: 8em; background-color: chocolate; font-weight: 900; color: bisque; "
+						>All
+					</li>
+				</a>
+				{% for location in locations %}
+				<a href="{% url 'display_photos'%}?location={{location.name}}">
+					<li
+						class="list-group-item btn btn-outline border shadow rounded-3 m-2"
+						style="width: 8em; background-color: chocolate; font-weight: 900; color: bisque;"
+						>{{location.name}}</li>
+				</a>
+
+				{% endfor %}
+			</ul>
+		</div>
+	</div>
+</div>
+
+<div class="container-fluid" id="home">
+    <div >
+        <div id="overlay" class="row">
+    
+            <div class="intro" style="vh-100" >
+                <h1 id="welcome_text"> <strong>Welcome to Portraiture~phactory </strong></h1>
+                
+            </div>
+        </div>
+    </div>
+</div>
+<h1 class='text-center' > <em>Arcade</em> </h1>
+<div class="container-fluid" id="content">
+    <div class="row p-4">
+        {% for img in images%}
+    <div class = "col-md-4"  data-toggle ="modal" data-target="#showPictureModal{{img.id}}">
+        <a href="{{img.id}}" data-toggle="modal" data-target="{{img.id}}">
+            <img  src="{{img.photo.url}}" class="img-responsive" alt="{{img.name}}"style="width:100%;width:100%;">
+            <h5 class="text-center">{{img.name}}</h5>
+        </a>
+        <div class="modal fade" id="showPictureModal{{img.id}}" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">>
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="modalPictureTitle">{{img.name}}</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        
+                        
+                    </div>
+                    <div class="modal-body">
+                        <img src="{{img.photo.url}}" class="img-responsive" alt="Image"
+                            style= "height: 400px; wi max-width:100%; ">
+                        <p class="text-justify">{{img.description}}</p>
+                        <p class="text-left"><b>Location:</b> {{img.location}}</p>
+                        <p class="text-left"><b> Category:</b> {{img.category}}</p>
+                        <p>Date Uploaded:{{img.date_uploaded}}</p>
+                    
+                    </div>
+
+                    <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 padding-1">
+                        <input id="{{img.id}}.url"  class="form-control input-md responsive" type="text"
+                            value="{{img.photo.url}}">
+                        <button type="button" onclick="copyToClipboard();">Copy</button>
+                        <script>
+                            function copyToClipboard() {
+                                var copyText = document.getElementById("{{img.id}}.url");
+                                copyText.select();
+                                copyText.setSelectionRange(0, 99999)
+                                navigator.clipboard.writeText(copyText.value)
+                                alert('url copied:' + copyText.value);
+                            }
+                        </script>
+
+
+                    </div>
+                    
+                
+
+                    <div class="modal-footer">
+                        
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+    {%endfor%}
+    </div>
+</div>
+
+<footer class="footer">
+    <p class="text-center"> <em>© Belinda Ntinyari 2022. All Rights Reserved</em></p>
+</footer>
+
+
