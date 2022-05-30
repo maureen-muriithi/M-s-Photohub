@@ -1,7 +1,7 @@
-{% extends 'layouts.html' %}
+{% extends 'base.html' %}
 {% block content %}
 <div class="container">
-    <h2> Gallery</h2>
+    <h1>M's Gallery</h1>
     <hr>
 
     {% if location_images %}
@@ -38,12 +38,10 @@
             </div>
         </div>
 
+
         {% endfor %}
     </div>
     {% endif %}
 
 </div>
-<footer class="footer">
-    <p class="text-center"> <em>© Belinda Ntinyari 2022. All Rights Reserved</em></p>
-</footer>
 {% endblock %}

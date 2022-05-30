@@ -79,13 +79,13 @@ class Image(models.Model):
         self.delete()
 
     @classmethod
-    def search_by_category(cls, search_term):
-        searched_photo = cls.objects.filter(category__icontains=search_term)
-        return searched_photo
+    def search_by_category(cls, category):
+        images = cls.objects.filter(category__name__icontains=category)
+        return images
     
     @classmethod
-    def filter_by_location(cls, location):
-        photo_location = Image.objects.filter(location__name=location).all()
+    def filter_by_location(cls, location_name):
+        photo_location = Image.objects.filter(location__name=location_name).all()
         return photo_location
     
     @classmethod
