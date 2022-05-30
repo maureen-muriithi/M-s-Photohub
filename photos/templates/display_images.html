@@ -24,14 +24,14 @@
 			>
 				<a href="{% url 'display_photos'%}">
 					<li
-						class="list-group-item btn btn-outline-info border m-2 shadow rounded-3"
+						class="list-group-item btn btn-outline-info border m-2 shadow rounded-2"
 						style="width: 8em; background-color: chocolate; font-weight: 900; color: bisque; "
 						>All
 					</li>
 				</a>
 
 				{% for category in categories %}
-				<a href="/search">
+				<a href="{% url 'display_photos'%}">
 					<li
 						class="list-group-item btn btn-outline-info border m-2 shadow rounded-3"
 						style="width: 9em; background-color: chocolate; color: bisque; font-weight: 900;" 
@@ -61,10 +61,10 @@
 				
 				<span id="locations">
 					{% for location in locations %}
-						<a class="btn btn-outline-info btn-sm" id="btn"
+						<a class="btn btn-outline-info btn-md" id="btn"
 						   href="/location/{{location.name}}">
 						   <li
-						class="list-group-item btn btn-outline border shadow rounded-3 m-2"
+						class="list-group-item btn-md btn-outline-info border shadow rounded-3 m-2"
 						style="width: 8em; background-color: chocolate; font-weight: 900; color: bisque;"
 						>{{location.name}}</li></a>
 					{%endfor%}

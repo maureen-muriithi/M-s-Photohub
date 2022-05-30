@@ -1,8 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
-
 <div class="container-fluid" style="background-color:chocolate; padding-bottom: 300px;">
-  <div class="container-fluid" style="background-color:chocolate; padding-bottom: 300px;">
     <div class="container text-center" id="home" style="width: 100%; background-color: chocolate;">
 		<div>
 			<div id="overlay" class=" text-center">
@@ -13,69 +11,74 @@
 			</div>
 		</div>
 	</div>
-  <hr>
+    <hr>
+    {% if images %}
+    <h2 class="text-center">Found {{ images|length }} images in '{{message}}' Category</h2>
+    {% else %}
+    <h2 class="text-center"> Found 0 images for your search '{{message}}'</h2>
 
-  {% if images %}
-  <h2 class="text-center" id="found">Found {{ images|length }} images in '{{message}}' Category</h2>
-  {% else %}
-  <h2 class="text-center" id="foundnon"> Found 0 images for your search '{{message}}'</h2>
-  <br><br>
-  <a class="d-block mx-auto" href="/images">
-      <button class="btn btn-sm btn-info d-block mx-auto">Check out available photos</button>
-  </a>
-  {% endif %}
+    <a class="d-block mx-auto" href="/images">
+        <button class="btn btn-sm btn-info d-block mx-auto">Check out available photos</button>
+    </a>
+    {% endif %}
 
-  {% if images %}
-  <div class="container-fluid" id="content"  style="background-color: chocolate;">
-    <div class="row p-4">
-      {% for img in images%}
-    <div class = "col-md-4" data-toggle ="modal" data-target="#showPictureModal{{img.id}}">
-      <a href="{{img.id}}" data-toggle="modal" data-target="{{img.id}}">
-        <img src="{{img.photo.url}}" class="img-responsive" alt="{{img.name}}" style="width: 100%;width: 100%; height:400px">
-        <h4 class="text-center text-white">{{img.name}}</h4>
-      </a>
-      <div class="modal fade" id="showPictureModal{{img.id}}" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">>
-        <div class="modal-dialog modal-dialog-centered" role="document">
-          <div class="modal-content">
-            <div class="modal-header" style="background-color:chocolate ; color: bisque;" >
-              <h4 class="modal-title" id="modalPictureTitle">{{img.name}}</h4>
-              <button type="button" class="btn-close justify-content-end" data-bs-dismiss="modal" aria-label="Close" style="color: black;">&times;</button>
-              
-            </div>
-            <div class="modal-body" style="background-color:chocolate ; color: bisque;" >
-  
-              <img src="{{img.photo.url}}" class="img-responsive" alt="Image"
-                style="width:100%;max-width:100%; height: 400px;">
-              <br>
-              <p class="text-left"><b>Description:</b></p>
-              <p class="text-justify" style="font-size: medium;">{{img.description}}</p>
-              <p class="text-left"><b>Location:</b> {{img.location}}</p>
-              <p class="text-left"><b>Category:</b> {{img.category}}</p>
-              <p class="text-left"><b>Uploaded by:</b> {{img.photographer}}, <b>updated on</b> {{ img.date_uploaded | date}}</p>						
-            </div>
-  
+
+    {% if images %}
+    <div class="container-fluid" id="content"  style="background-color: chocolate;">
+        <div class="row p-4">
+
+        {% for img in images %}
+
+        <div class = "col-md-4" data-toggle ="modal" data-target="#showPictureModal{{img.id}}">
+            <a href="{{img.id}}" data-toggle="modal" data-target="{{img.id}}">
+                <img src="{{img.photo.url}}" class="img-responsive" alt="{{img.name}}" style="width: 100%;width: 100%; height:400px">
+                <h4 class="text-center text-white">{{img.name}}</h4>
+            </a>
+            <div class="modal fade" id="showPictureModal{{img.id}}" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">>
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header" style="background-color:chocolate ; color: bisque;" >
+                            <h4 class="modal-title" id="modalPictureTitle">{{img.name}}</h4>
+                            <button type="button" class="btn-close justify-content-end" data-bs-dismiss="modal" aria-label="Close" style="color: black;">&times;</button>
+                            
+                        </div>
+                        <div class="modal-body" style="background-color:chocolate ; color: bisque;" >
     
-            <div class="modal-footer" style="background-color:chocolate ; color: bisque;">
-              <input class="form-control input-lg" type="text"
-                  value="{{img.photo.url}}" id="{{img.id}}.url">
-              <button class="btn btn-success btn-sm" onclick="copyLink('{{img.id}}.url')">Copy</button>
+                            <img src="{{img.photo.url}}" class="img-responsive" alt="Image"
+                                style="width:100%;max-width:100%">
+                            <br>
+                            <p class="text-left"><b>Description:</b></p>
+                            <p class="text-justify" style="font-size: medium;">{{img.description}}</p>
+                            <p class="text-left"><b>Location:</b> {{img.location}}</p>
+                            <p class="text-left"><b>Category:</b> {{img.category}}</p>
+                            <p class="text-left"><b>Uploaded by:</b> {{img.photographer}}, <b>updated on</b> {{ img.date_uploaded | date}}</p>						
+                        </div>
+    
+        
+                        <div class="modal-footer" style="background-color:chocolate ; color: bisque;">
+                            <input class="form-control input-lg" type="text"
+                                    value="{{img.photo.url}}" id="{{img.id}}.url">
+                            <button class="btn btn-success btn-sm" onclick="copyLink('{{img.id}}.url')">Copy</button>
+                        </div>
+                        <div class="modal-footer" style="background-color:chocolate ; color: bisque;">
+                            <button
+                            type="button"
+                            class="btn btn-danger"
+                            data-bs-dismiss="modal"
+                            >Close</button>
+                        </div>
+                    </div>	
+                </div>
             </div>
-            <div class="modal-footer" style="background-color:chocolate ; color: bisque;">
-              <button
-              type="button"
-              class="btn btn-danger"
-              data-bs-dismiss="modal"
-              >Close</button>
-            </div>
-          </div>	
         </div>
-      </div>
+        {%endfor%}
     </div>
-    {%endfor%}
-  </div>
-  {% endif %}
-
-</div> 
+    {%endif%}
 </div>
+</div>
+<footer class="footer" style="background-color: black; color: bisque; height: 35px; font-size: 1.4rem;" >
+    <p class="text-center" style="padding: 5px;"> <em>© Maureen Muriithi 2022. All Rights Reserved</em></p>
+</footer>
+
+{%endblock content%}
     
-{% endblock %}
