@@ -31,4 +31,4 @@ def display_photos(request):
 def image_location(request, location):
     images = Image.filter_by_location(location)
     print(images)
-    return render(request, 'location.html', {'location_images': images})
+    return render(request, 'location.html', {'locations': images})

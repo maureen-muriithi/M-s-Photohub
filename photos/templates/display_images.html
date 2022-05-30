@@ -1,19 +1,22 @@
 {%extends 'base.html'%}
+{%load bootstrap3%}
 {% block content %} 
 {{ block.super}}
 
 <main class="my-3">
+	<br>
 	<div class="container my-3">
 		<div class="text-center">
-			<div class="card text-center">
-				<div class="card-header text-center mx-auto"> Categories </div>
+			<div class="card text-center" style="background-color:bisque;" >
+				<br>
+				<div class="card-header text-center mx-auto" style="font-weight: 900; font-size: larger; background-color: chocolate; padding: 10px;"> Categories </div>
 				<ul
 					class="list-group list-group-flush d-flex flex-row flex-wrap justify-content-center m-2 text-center px-2"
 				>
 					<a href="{% url 'display_photos'%}">
 						<li
 							class="list-group-item btn btn-outline-info border m-2 shadow rounded-3"
-							style="width: 8em"
+							style="width: 8em; background-color: chocolate; font-weight: 900; color: bisque; "
 							>All
 						</li>
 					</a>
@@ -22,7 +25,7 @@
 					<a href="{% url 'display_photos'%}?category={{category.name}}">
 						<li
 							class="list-group-item btn btn-outline-info border m-2 shadow rounded-3"
-							style="width: 9em"
+							style="width: 9em; background-color: chocolate; color: bisque; font-weight: 900;" 
 							>{{category.name}}
 						</li>
 					</a>
@@ -31,26 +34,27 @@
 				</ul>
 			</div>
 		</div>
+		<br><br>
 		<div class="text-center">
-			<div class="card text-center">
-				<div class="card-header text-center mx-auto"> Locations </div>
+			<div class="card text-center" style="background-color: bisque;">
+				<br>
+				<div class="card-header text-center mx-auto" style="font-weight: 900; font-size: larger; background-color: chocolate; padding: 10px;"> Locations </div>
 				<ul
 					class="list-group list-group-flush d-flex flex-row flex-wrap justify-content-center"
 				>
 					<a href="">
 						<li
-							class="list-group-item btn btn-outline-info border m-2 shadow rounded-3"
-							style="width: 8em"
+							class="list-group-item btn btn-outline border m-2 shadow rounded-3"
+							style="width: 8em; background-color: chocolate; font-weight: 900; color: bisque; "
 							>All
 						</li>
 					</a>
 					{% for location in locations %}
 					<a href="{% url 'display_photos'%}?location={{location.name}}">
 						<li
-							class="list-group-item btn btn-outline-primary border shadow rounded-3 m-2"
-							style="width: 8em"
-							>{{location.name}}</li
-						>
+							class="list-group-item btn btn-outline border shadow rounded-3 m-2"
+							style="width: 8em; background-color: chocolate; font-weight: 900; color: bisque;"
+							>{{location.name}}</li>
 					</a>
 
 					{% endfor %}
@@ -58,49 +62,34 @@
 			</div>
 		</div>
 	</div>
-	<div class="container-fluid">
-		<div class="container-fluid album py-5 bg-light">
+
+	<!-- <div class="container-fluid">
+		<div class="container-fluid album py-3 bg-light">
 			<div class="container-fluid">
 				<div
 					class="container-fluid d-flex flex-wrap flex-sm-wrap justify-content-around mx-auto"
-					data-masonry='{ "itemSelector": ".picture", columnWidth: 5, fitWidth: true}'
+					data-masonry='{ "itemSelector": ".picture", columnWidth: 6, fitWidth: true}'
 				>
-					{%for photo in photos%}
+					{%for image in images %}
 					<span class="picture m-2 w-25 shadow-lg p-3 mb-5 bg-body">
 						<div class="mx-auto my-auto text-center py-2">
                             <button class="btn btn-outline-primary btn-block mx-auto"
 								>{{ image.name }}</button
 							>
 							<button class="btn btn-outline-primary btn-block mx-auto"
-								>{{ image.category.name }}</button
+								>Category: {{ image.category.name }}</button
 							>
 							<button class="btn btn-outline-success btn-block mx-auto"
-								>{{ image.location }}</button
+								> Location: {{ image.location }}</button
 							>
 						</div>
-						<!-- Button trigger modal -->
-						<img
-							data-bs-toggle="modal"
-							class="px-sm-1 mx-auto my-auto"
-							type="button"
-							data-bs-target="#pic{{photo.id}}"
-							src="{{image.photo.url}}"
-							alt="{{image.description}}"
-							width="100%"
-							height="auto"
-						/>
+						
+						<a href="{{image.id}}" data-toggle="modal" data-target="{{image.id}}">
+							<img src="{{image.photo.url}}" class="img-responsive" alt="{{img.name}}" style="width:100%;width:100%">
 
-						<!-- Modal -->
-						<div
-							class="modal fade"
-							id="pic{{image.id}}"
-							data-bs-backdrop="static"
-							data-bs-keyboard="false"
-							tabindex="-1"
-							aria-labelledby="staticBackdropLabel"
-							aria-hidden="true"
-							style=""
-						>
+						</a>
+						<div class="modal fade" id="showPictureModal{{image.id}}" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">>
+
 							<div class="modal-dialog modal-xl col-10">
 								<div class="modal-content">
 									<div class="modal-header">
@@ -134,13 +123,13 @@
 										<img
 											class="m-2 rounded-3 col-12 img-fluid px-sm-2 mx-auto"
 											src="{{image.photo.url}}"
-											alt="{{image.photo.description}}"
+											alt="{{image.image.description}}"
 											width="auto"
 											height="auto"
 										/>
 									</div>
 									<div class="modal-footer">
-										<input id="{{img.id}}.url"  class="form-control input-md responsive" type="text" value="{{image.photo.url}}">
+										<input id="{{image.id}}.url"  class="form-control input-md responsive" type="text" value="{{image.photo.url}}">
                                         <button type="button" onclick="copyToClipboard();">Copy</button>
                                         <script>
                                             function copyToClipboard() {
@@ -168,10 +157,75 @@
 				</div>
 			</div>
 		</div>
+	</div> -->
+
+
+	<div class="container-fluid" id="home">
+		<div>
+			<div id="overlay" class="row">
+		
+				<div class="intro">
+					<h1 id="welcome_text"> <strong>M'S GALLERY </strong></h1>	
+				</div>
+			</div>
+		</div>
 	</div>
 
-    <footer class="footer">
-        <p class="text-center"> <em>© Maureen Muriithi 2022. All Rights Reserved</em></p>
+	<div class="container-fluid" id="content">
+		<div class="row p-4">
+			{% for img in images%}
+			<div class = "col-md-4" data-toggle ="modal" data-target="#showPictureModal{{img.id}}">
+				<a href="{{img.id}}" data-toggle="modal" data-target="{{img.id}}">
+					<img src="{{img.photo.url}}" class="img-responsive" alt="{{img.name}}" style="width:100%;width:100%">
+					<h5 class="text-center">{{img.name}}</h5>
+				</a>
+				<div class="modal fade" id="showPictureModal{{img.id}}" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">>
+					<div class="modal-dialog modal-dialog-centered" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h4 class="modal-title" id="modalPictureTitle">{{img.name}}</h4>
+								<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">&times;</button>
+								
+							</div>
+							<div class="modal-body">
+								<img src="{{img.photo.url}}" class="img-responsive" alt="Image"
+									style="width:100%;max-width:100%">
+								<p class="text-justify">{{img.description}}</p>
+								<p class="text-left"><b>Location:</b> {{img.location}}</p>
+								<p class="text-left"><b>Category:</b> {{img.category}}</p>
+								<p class="text-left"><b>Uploaded by:</b> {{img.photographer}} at {{ img.date_uploaded }}</p>						
+						</div>
+
+			
+						<div class="modal-footer">
+							<input class="form-control input-lg" type="text"
+									value="{{img.photo.url}}" id="{{img.id}}.url">
+							<button class="btn btn-success btn-sm" onclick="copyLink('{{img.id}}.url')">Copy</button>
+							<!-- <button type="button" class="btn btn-outline-danger btn-sm" data-dismiss="modal">Close
+							</button> -->
+						</div>
+
+						<button
+							type="button"
+							class="btn btn-danger"
+							data-bs-dismiss="modal"
+							>Close</button
+						>
+
+					</div>
+						
+					</div>
+
+				</div>
+			</div>
+
+		</div>
+		{%endfor%}
+		</div>
+	</div>
+
+    <footer class="footer" style="background-color: chocolate;">
+        <p class="text-center" style="color: bisque;"> <em>© Maureen Muriithi 2022. All Rights Reserved</em></p>
     </footer>
 
 </main>
