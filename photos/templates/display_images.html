@@ -123,8 +123,14 @@
 										<h5
 											class="modal-title text-center text-decoration-underline fw-bold h6"
 											id="staticBackdropLabel"
-											>{{ image.description}}</h5
-										>
+											>{{ image.description}}
+                                        </h5>
+                                        <h5
+											class="modal-title text-center text-decoration-underline fw-bold h6"
+											id="staticBackdropLabel"
+											> Uploaded by:{{ image.photographer}} at {{ image.date_uploaded}}
+                                        </h5>
+                                        
 										<img
 											class="m-2 rounded-3 col-12 img-fluid px-sm-2 mx-auto"
 											src="{{image.photo.url}}"
