@@ -1,3 +1,4 @@
+from email.mime import message
 from unicodedata import category
 from django.shortcuts import render
 from .models import Image, Location, Category
@@ -21,8 +22,10 @@ def display_photos(request):
 
 def image_location(request, location_name):
     images = Image.filter_by_location(location_name)
+    locations = Location.get_location()
+    message = f"{location_name}"
     print(images)
-    return render(request, 'pictures/location.html', {'location_images': images})
+    return render(request, 'location.html', {'location_images': images, "locations": locations, "message":message})
 
 def search_results(request):
     if 'imagesearch' in request.GET and request.GET["imagesearch"]:
