@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Image
+from .models import Image, Location, Category
 import datetime as dt
 
 
@@ -23,5 +23,7 @@ def search_photos(request):
 
 def display_photos(request):
     date = dt.date.today()
-    images = Image.get_images(id=1)
-    return render(request, 'display_images.html', {"date": date,"images":images})
+    images = Image.objects.all()
+    categories = Category.objects.all()
+    locations = Location.get_location()
+    return render(request, 'display_images.html', {"date": date,"images":images, "locations":locations, "categories": categories})

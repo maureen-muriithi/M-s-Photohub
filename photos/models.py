@@ -66,7 +66,7 @@ class Image(models.Model):
     name = models.CharField(max_length=30)
     description = models.TextField()
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
-    photo = models.ImageField(upload_to = ('image/'), default="")
+    photo = models.ImageField(upload_to = ('images/'), default="")
     image_link = models.CharField(max_length=2048)
     date_uploaded = models.DateTimeField(auto_now_add=True)
     photographer = models.ForeignKey(Photographer, on_delete= models.CASCADE)
