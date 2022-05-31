@@ -1,1 +1,1 @@
-web: gunicorn my-photohub.wsgi --log-file -
+web: gunicorn photohub.wsgi --log-file -
