@@ -17,10 +17,10 @@ class Test_Photographer(TestCase):
         photographers = Photographer.objects.all()
         self.assertTrue(len(photographers) > 0)
     
-    # def test_delete_photographer(self):
-    #     self.maureen.delete_photographer()
-    #     photographers = Photographer.objects.all()
-    #     self.assertTrue(len(photographers) > 0)
+    def test_delete_photographer(self):
+        self.maureen.delete_photographer()
+        photographers = Photographer.objects.all()
+        self.assertTrue(len(photographers) <= 0)
 
 class Test_Location(TestCase):
     '''
